@@ -8,3 +8,5 @@ Authorization:  {{Token}}
   "ref_num": "ZIC2EFE2",
   "amount": 3000
 }
+###
+POST https://zinger-ticket.herokuapp.com/api/ticket/update_ticket/
