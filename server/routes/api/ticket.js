@@ -11,7 +11,7 @@ router.post('/create_ticket/:socket_id', async (req, res) => {
 	delete ticket.status;
 	let data = { ...user, quantity, ...ticket, socket_id }
 	if (!data.email || !data.quantity || !data.price || !data.type) {
-		return res.status(400).json({ msg: "Please ensure email and phone number are valid.", status: false });
+		return res.status(400).json({ msg: "Please ensure email is valid.", status: false });
 	}
 	const crypto = require("crypto");
 	let id = "ZI" + (crypto.randomBytes(3).toString("hex")).toUpperCase();

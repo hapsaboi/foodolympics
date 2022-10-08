@@ -8,5 +8,27 @@ Authorization:  {{Token}}
   "ref_num": "ZIC2EFE2",
   "amount": 3000
 }
+
 ###
 POST https://zinger-ticket.herokuapp.com/api/ticket/create_ticket/hanis
+Content-Type: application/json
+
+{
+    "user":{"email":"hanis@gmail.com"},
+    "quantity":1,
+    "ticket":{"type":"prime","price":100}
+}
+
+###
+POST https://zinger-ticket.herokuapp.com/api/ticket/update_ticket/
+Content-Type: application/json
+
+{
+  "ref_num": "ZIC2EFE2",
+  "amount": 3000,
+  "reference":"ZI121",
+  "status":"success"
+}
+
+###
+GET https://zinger-ticket.herokuapp.com/api/user/loggedin
