@@ -1,0 +1,10 @@
+@Token = Bearer sk_live_7hrvb3jzvid42lnyv20vw7eqsucenawr
+
+POST https://zingerad.zingerwallet.com/api/v1/generate-payment-link/
+Content-Type: application/json
+Authorization:  {{Token}}
+
+{
+  "ref_num": "ZIC2EFE2",
+  "amount": 3000
+}
