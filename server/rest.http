@@ -9,4 +9,4 @@ Authorization:  {{Token}}
   "amount": 3000
 }
 ###
-POST https://zinger-ticket.herokuapp.com/api/ticket/update_ticket/
+POST https://zinger-ticket.herokuapp.com/api/ticket/create_ticket/hanis
