@@ -20,7 +20,7 @@ Content-Type: application/json
 }
 
 ###
-POST https://zinger-ticket.herokuapp.com/api/ticket/update_ticket/
+POST https://zinger-ticket.herokuapp.com/api/ticket1/update_ticket/
 Content-Type: application/json
 
 {
@@ -30,5 +30,19 @@ Content-Type: application/json
   "status":"success"
 }
 
+
 ###
 GET https://zinger-ticket.herokuapp.com/api/user/loggedin
+
+
+
+###
+POST https://localhost:5000/api/ticket1/update_ticket/
+Content-Type: application/json
+
+{
+  "ref_num": "ZIC2EFE2",
+  "amount": 3000,
+  "reference":"ZI121",
+  "status":"success"
+}
