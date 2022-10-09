@@ -24,7 +24,7 @@ POST https://zinger-ticket.herokuapp.com/api/ticket1/update_ticket/
 Content-Type: application/json
 
 {
-  "ref_num": "ZIC2EFE2",
+  "ticket_ref": "ZIC2EFE2",
   "amount": 3000,
   "reference":"ZI121",
   "status":"success"

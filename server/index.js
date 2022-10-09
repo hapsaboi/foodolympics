@@ -37,11 +37,12 @@ const io = require("socket.io")(server, {
 		origin: "*",
 	},
 });
+
 io.on("connection", (socket) => {
 	console.log("connected: " + socket.id)
 	socket.emit("connection", "messup");
 
-	app.use('/api/ticket1/update_ticket', async (req, res) => {
+	app.use('/api/ticket/update_ticket', async (req, res) => {
 		socket.emit("msg", "success");
 		const { ticket_ref, status, reference, amount } = req.body;
 		console.log(req.body)
