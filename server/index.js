@@ -42,7 +42,7 @@ io.on("connection", (socket) => {
 	console.log("connected: " + socket.id)
 
 	app.use('/api/ticket/update_ticket/:amount', async (req, res) => {
-		const amount = parseFloat(req.query.amount);
+		const amount = parseFloat(req.params.amount);
 		console.log(req.params);
 		console.log(req.query);
 		const { ticket_ref, status, reference } = req.body;
