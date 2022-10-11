@@ -47,7 +47,6 @@ export default () => {
         ]}
         primaryButtonText="Order Now"
         primaryButtonUrl="https://order.now.com"
-        imageSrc="https://images.unsplash.com/photo-1460306855393-0410f61241c7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80"
         imageCss={Object.assign(tw`bg-cover`, imageCss)}
         imageContainerCss={tw`md:w-1/2 h-auto`}
         imageDecoratorBlob={true}

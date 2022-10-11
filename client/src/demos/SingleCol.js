@@ -46,12 +46,12 @@ export default ({
     {
       question: "How reliable are we ?",
       answer:
-        "We are a 100% reliable. We have partnered up with the best courier services to enable fast deliveries."
+        "We are a 100% reliable. We have partnered up with the best service providers, to ensure smooth operations."
     },
     {
-      question: "How is my food made?",
+      question: "How do i get a reversal?",
       answer:
-        "Our food is cooked by the best chefs around, so there is nothing to fear."
+        "The sytems does auto reversal if the user transfers any amount other than the specified amount, but in the case you dont receive a reversal, you can reach out to our customer service."
     },
     {
       question: "Where can I reach you for support ?",

@@ -183,7 +183,7 @@ export default () => {
 
 
   return (
-    <Container>
+    <Container id="tickets1">
       {notificationStatus === true ? <Notifications details={notificationDetails} /> : null}
       <ContentWithPaddingXl>
         <HeaderRow>
@@ -204,10 +204,7 @@ export default () => {
                   </CardRatingContainer>
                   <CardHoverOverlay
                     variants={{
-                      click: {
-                        opacity: 1,
-                        height: "auto"
-                      },
+
                       hover: {
                         opacity: 1,
                         height: "auto"
@@ -226,6 +223,7 @@ export default () => {
                   <CardTitle>{card.type}</CardTitle>
                   <CardContent>{card.content}</CardContent>
                   <CardPrice>₦: {card.price.toLocaleString()}</CardPrice>
+                  <CardButton onClick={() => { toggle(); setSelected(card) }}>Buy Now</CardButton>
                 </CardText>
               </Card>
             </Col>

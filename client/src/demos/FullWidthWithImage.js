@@ -66,9 +66,9 @@ export default ({
     </>
   ),
   description = "Oder your ticket today with our system and enjoy its wonderful service.",
-  primaryActionUrl = "#",
+  primaryActionUrl = "#tickets1",
   primaryActionText = "Tickets",
-  secondaryActionUrl = "#",
+  secondaryActionUrl = "#whyus",
   secondaryActionText = "Why Us"
 }) => {
 
