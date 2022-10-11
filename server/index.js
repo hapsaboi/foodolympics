@@ -42,8 +42,7 @@ io.on("connection", (socket) => {
 	console.log("connected: " + socket.id)
 
 	app.use('/api/ticket/update_ticket', async (req, res) => {
-		console.log(req.body || "undefined");
-		const { ticket_ref, status, reference, amount } = JSON.parse(req.body);
+		const { ticket_ref, status, reference, amount } = req.body;
 		console.log("sent the request");
 		if (!ticket_ref || !status || !reference || !amount) {
 			return res.status(400).send({ msg: 'some fields not present', status: false });
