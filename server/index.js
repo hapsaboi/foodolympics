@@ -41,9 +41,11 @@ const io = require("socket.io")(server, {
 io.on("connection", (socket) => {
 	console.log("connected: " + socket.id)
 
-	app.use('/api/ticket/update_ticket', async (req, res) => {
-		console.log(req.body);
-		const { ticket_ref, status, reference, amount } = req.body;
+	app.use('/api/ticket/update_ticket/:amount', async (req, res) => {
+		const amount = parseFloat(req.query.amount);
+		console.log(req.params);
+		console.log(req.query);
+		const { ticket_ref, status, reference } = req.body;
 		console.log("sent the request");
 		if (!ticket_ref || !status || !reference || !amount) {
 			return res.status(400).send({ msg: 'some fields not present', status: false });
