@@ -12,7 +12,7 @@ import { ReactComponent as SvgDecoratorBlob1 } from "images/svg-decorator-blob-5
 import { ReactComponent as SvgDecoratorBlob2 } from "images/svg-decorator-blob-7.svg";
 import logo from "../images/logo_business.png";
 import zinger_logo from "../images/zinger1.png";
-import { Row, Col, Input, FormGroup, FormText, FormFeedback, Label } from "reactstrap";
+import { Row, Col, Input, FormGroup, FormFeedback, Label } from "reactstrap";
 import { QuantityPicker } from 'react-qty-picker';
 import { ticket, business } from '../data/api';
 import CryptoJS from "crypto-js";
@@ -28,6 +28,7 @@ import {
 import Notifications from "components/Notification/Notification";
 
 import { io } from 'socket.io-client';
+import { BackEnd } from "../data/api.js";
 
 const HeaderRow = tw.div`flex justify-between items-center flex-col xl:flex-row`;
 const Header = tw(SectionHeading)``;
@@ -67,6 +68,11 @@ const DecoratorBlob2 = styled(SvgDecoratorBlob2)`
 export default () => {
   let tickets = [
     {
+      type: "Test1",
+      price: 100,
+      status: "available"
+    },
+    {
       type: "Early Birds",
       price: 3000,
       status: "available"
@@ -95,6 +101,7 @@ export default () => {
   const [notificationDetails, setNotificationDetails] = useState({ msg: "", type: "" });
   const [socket, setSocket] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [socketData, setSocketData] = useState({});
 
   const [requestLoading, setRequestLoading] = useState(false);
 
@@ -103,14 +110,12 @@ export default () => {
     setTicket({});
     setUser({});
     setQuantity(1);
-    setSelected({});
     setVerify({ email: false });
     setLoading(false);
   }
   useEffect(() => {
     if (socket === null) {
-      setSocket(io("http://localhost:5000"));
-      console.log("here")
+      setSocket(io(BackEnd));
     }
     if (socket) {
       socket.on('connection', () => {
@@ -120,7 +125,10 @@ export default () => {
 
 
       socket.on('msg', (data) => {
-        setPaymentStatus(true);
+        setPaymentStatus(data.status);
+        setSocketData(data);
+        console.log(data);
+
       })
     }
   }, [socket])
@@ -130,7 +138,7 @@ export default () => {
     setRequestLoading(true);
     // let data = await encrypt({ ticket: ticket, quantity, user });
     let data = { ticket: selected, quantity, user };
-    console.log(data);
+
     await axios.post(ticket.createTicket + "/" + socket.id, data).then((response) => {
       if (response.data.status === true) {
         setTicket(response.data.data);
@@ -326,44 +334,22 @@ export default () => {
           {paymentStatus === "reversed" ?
             <>
               {
-                Object.keys(ticketData).length === 0 ?
-                  <>
-                    <Col><img alt="Company Logo" src={logo} /></Col>
+                Object.keys(socketData).length > 0 ?
+                  <div style={{ textAlign: "center" }}>
+                    <img alt="zinger logo" style={{ width: "70%", marginLeft: "auto", marginRight: "auto", display: "block" }} src={zinger_logo} />
 
                     <h4 style={{ textAlign: "center", padding: "10px" }}>
-                      <b>Invalid Amount Supplid</b><br />
-                      <b>Supplied: ₦{(ticketData.payment_details.amount).toLocaleString()}</b><br />
-                      <b>Actual Amount: ₦{(selected.price * quantity).toLocaleString()}</b><br />
-                      <Button disabled={() => { reset() }} color="success" style={{ background: "green", color: "white" }} onClick={createTicket}>
+                      <b>Invalid Amount Supplied</b><br />
+                      <b>Supplied: ₦{(socketData.amount).toLocaleString()}</b><br />
+                      <b>Actual Amount: ₦{((selected.price * quantity) + 100).toLocaleString()}</b><br />
+                      Note: the sum of {(socketData.amount - 100)} will be reversed to the account.
+                      <Button onClick={() => reset()} color="success" style={{ background: "green", color: "white" }}>
                         Try again
                       </Button>
                     </h4>
-                  </>
+                  </div>
                   :
-                  <>
-
-                    <div style={{ textAlign: "center" }}>
-                      <img alt="zinger logo" style={{ width: "70%", marginLeft: "auto", marginRight: "auto", display: "block" }} src={zinger_logo} />{
-                        loading ?
-                          <>
-                            <GridLoader color={"black"} loading={true} size={40} />
-                            Verifying your payment.
-                          </>
-                          :
-                          <>
-                            <h4>Payment Bank: {ticketData?.payment_details?.bank_name}</h4>
-                            <h4 style={{ marginTop: "-10px" }}>Account No: {ticketData?.payment_details?.account_no}</h4>
-                            <h4 style={{ marginTop: "-10px" }}>Amount: ₦{(ticketData?.payment_details?.amount).toLocaleString()}</h4>
-                            Note: Any payment less than the specified amount, wll lead to an instant reversal minus the charges
-
-                            <Button style={{ background: "green", color: "white" }} onClick={() => { setLoading(true) }}>I have made the payment</Button>
-                          </>
-                      }
-                    </div>
-
-
-
-                  </>
+                  null
               }
             </>
             : null

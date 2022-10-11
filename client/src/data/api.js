@@ -1,4 +1,4 @@
-const BackEnd = process.env.REACT_APP_BackEndHost;
+export const BackEnd = process.env.REACT_APP_BackEndHost;
 export const business = {
 	name: "PlayZone",
 	date: "6th Nov, 2022",

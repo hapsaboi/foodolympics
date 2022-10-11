@@ -20,14 +20,27 @@ Content-Type: application/json
 }
 
 ###
-POST https://zinger-ticket.herokuapp.com/api/ticket1/update_ticket/
+POST https://zinger-ticket.herokuapp.com/api/ticket/update_ticket/
 Content-Type: application/json
 
 {
-  "ticket_ref": "ZIC2EFE2",
+  "ticket_ref": "ZI16DBF1",
   "amount": 3000,
   "reference":"ZI121",
   "status":"success"
+}
+
+
+
+###
+POST http://localhost:5000/api/ticket/update_ticket/
+Content-Type: application/json
+
+{
+  "ticket_ref": "ZIDEF4D4",
+  "amount": 3000,
+  "reference":"ZI121",
+  "status":"reversed"
 }
 
 
@@ -45,4 +58,17 @@ Content-Type: application/json
   "amount": 3000,
   "reference":"ZI121",
   "status":"success"
+}
+
+
+
+###
+POST https://zingerad.zingerwallet.com/api/v1/send-ticket-email/
+Content-Type: application/json
+
+{
+  "ref_num": "ZIC2EFE2",
+  "amount":3000,
+  "name":"Hanis Hapsa",
+  "email":"hapsahanis.hh@gmail.com"
 }

@@ -40,12 +40,11 @@ const io = require("socket.io")(server, {
 
 io.on("connection", (socket) => {
 	console.log("connected: " + socket.id)
-	socket.emit("connection", "messup");
 
 	app.use('/api/ticket/update_ticket', async (req, res) => {
-		socket.emit("msg", "success");
 		const { ticket_ref, status, reference, amount } = req.body;
 		console.log(req.body)
+		console.log("sent the request");
 		if (!ticket_ref || !status || !reference || !amount) {
 			return res.status(400).send({ msg: 'some fields not present', status: false });
 		}
@@ -62,10 +61,13 @@ io.on("connection", (socket) => {
 					found.save();
 				}
 
-				socket.to(found.socket_id).emit("msg", "success");
+				socket.to(found.socket_id).emit("msg", { ticket_ref, status, reference, amount });
+				// let data_sent = { ref_num: ticket_ref, amount, email: found.email };
+				// await axios.post('https://zingerad.zingerwallet.com/api/v1/send-ticket-email/', data_sent);
+
 				return res
 					.status(200)
-					.send({ status: true, msg: "Payment received successfully" });
+					.send({ status: true, msg: "Payment processed successfully" });
 
 			} catch (err) {
 				console.log(err);
