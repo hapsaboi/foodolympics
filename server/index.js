@@ -42,7 +42,7 @@ io.on("connection", (socket) => {
 	console.log("connected: " + socket.id)
 
 	app.use('/api/ticket/update_ticket', async (req, res) => {
-		console.log(req.body);
+		console.log(req.body || "undefined");
 		const { ticket_ref, status, reference, amount } = JSON.parse(req.body);
 		console.log("sent the request");
 		if (!ticket_ref || !status || !reference || !amount) {
