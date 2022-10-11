@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
 	cors({
-		origin: ["http://localhost:3000", "https://zinger-wallet.netlify.app"],
+		origin: ["http://localhost:3000", "https://sapiloshow.zingerwallet.com", "https://zinger-wallet.netlify.app"],
 		credentials: true
 	})
 );
