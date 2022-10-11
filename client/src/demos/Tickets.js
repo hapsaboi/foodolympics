@@ -120,15 +120,12 @@ export default () => {
     if (socket) {
       socket.on('connection', () => {
         let socketID = socket.id
-        console.log(socketID)
       })
 
 
       socket.on('msg', (data) => {
         setPaymentStatus(data.status);
         setSocketData(data);
-        console.log(data);
-
       })
     }
   }, [socket])
@@ -172,10 +169,7 @@ export default () => {
     }
     return result;
   }
-  async function encrypt(data) {
-    var ciphertext = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(data), process.env.REACT_APP_EncryptionKey).toString();
-    return ciphertext;
-  }
+
   function saveImg() {
     toPng(document.getElementById('ticket-download'))
       .then(function (dataUrl) {
@@ -210,6 +204,10 @@ export default () => {
                   </CardRatingContainer>
                   <CardHoverOverlay
                     variants={{
+                      click: {
+                        opacity: 1,
+                        height: "auto"
+                      },
                       hover: {
                         opacity: 1,
                         height: "auto"
