@@ -55,10 +55,12 @@ router.post('/add_user', async (req, res) => {
 					.status(200)
 					.send({ msg: 'Account created successfuly!' });
 			} catch (error) {
+				console.log(error)
 				return res.status(500).send({ msg: 'Account Not Created!' });
 			}
 		} catch (err) {
-			res.status(400).json({ msg: err });
+			console.log(err)
+			res.status(500).json({ msg: err });
 		}
 	}
 

@@ -4,6 +4,7 @@ import Hero from "demos/FullWidthWithImage.js";
 import Preview from "demos/Previews.js";
 import Tickets from "demos/Tickets.js";
 import FAQ from "demos/SingleCol";
+import People from "demos/People";
 import Footer from "demos/MiniCenteredFooter.js";
 // import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import tw from "twin.macro";
@@ -25,13 +26,8 @@ export default () => {
       >
         {({ remainingTime }) => { new Date(remainingTime) }}
       </CountdownCircleTimer> */}
-      <Tickets
-        heading={
-          <>
-            Checkout our <HighlightedText>menu.</HighlightedText>
-          </>
-        }
-      />
+      <Tickets />
+      <People />
       <Preview
         subheading={<Subheading>A Reputed Brand</Subheading>}
         heading={<>Why <HighlightedText>Choose Us ?</HighlightedText></>}
@@ -45,8 +41,7 @@ export default () => {
             value: "Address"
           }
         ]}
-        primaryButtonText="Order Now"
-        primaryButtonUrl="https://order.now.com"
+
         imageCss={Object.assign(tw`bg-cover`, imageCss)}
         imageContainerCss={tw`md:w-1/2 h-auto`}
         imageDecoratorBlob={true}

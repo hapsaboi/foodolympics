@@ -15,8 +15,8 @@ import zinger_logo from "../images/zinger1.png";
 import { Row, Col, Input, FormGroup, FormFeedback, Label } from "reactstrap";
 import { QuantityPicker } from 'react-qty-picker';
 import { ticket, business } from '../data/api';
-import CryptoJS from "crypto-js";
 import { toPng } from 'html-to-image';
+import artist3 from '../images/artist/artist3.png';
 import GridLoader from "react-spinners/GridLoader";
 import {
   Button,
@@ -195,7 +195,7 @@ export default () => {
           {tickets.map((card, index) => (
             <Col key={index} md={3}>
               <Card className="group" href={card.url} initial="rest" whileHover="hover" animate="rest">
-                <CardImageContainer imageSrc={logo} style={{ width: "100%" }}>
+                <CardImageContainer imageSrc={artist3} style={{ width: "100%" }}>
                   <CardRatingContainer>
                     <CardRating>
                       <StarIcon />

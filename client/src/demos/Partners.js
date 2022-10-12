@@ -11,6 +11,8 @@ import image1 from '../images/partners/1.png';
 import image2 from '../images/partners/2.png';
 import image3 from '../images/partners/3.png';
 import image4 from '../images/partners/4.png';
+import image5 from '../images/partners/5.png';
+import image6 from '../images/partners/6.png';
 import logo from '../images/logo.png';
 import logo_business from '../images/logo_business.png';
 
@@ -35,24 +37,26 @@ export default ({
     testimonials = [
         {
             imageSrc: logo,
-            customerName: "Sani Diogo"
         },
         {
             imageSrc: image1,
-            customerName: "Hafiz Anas"
         },
         {
             imageSrc: image2,
-            customerName: "Fiddausi Abdullahi"
         },
         {
             imageSrc: image3,
-            customerName: "Sani Diogo"
         },
         {
             imageSrc: image4,
-            customerName: "Sani Diogo"
+        },
+        {
+            imageSrc: image5,
+        },
+        {
+            imageSrc: image6,
         }
+
     ]
 }) => {
     return (
@@ -65,6 +69,7 @@ export default ({
                         <Testimonial>
                             <Image src={testimonial.imageSrc} style={{ width: "auto" }} />
                         </Testimonial>
+
                     </TestimonialContainer>
                 ))}
             </Testimonials>

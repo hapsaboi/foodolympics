@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import { common } from '../data/images';
 import artist1 from '../images/artist/artist1.png';
 import artist2 from '../images/artist/artist2.png';
 import artist3 from '../images/artist/artist3.png';
@@ -55,7 +55,8 @@ export default ({
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    adaptiveHeight: true
   },
   heading = (
     <>
@@ -97,12 +98,13 @@ export default ({
               <div>
                 <img src={artist3} alt="artist 1"></img>
               </div>
-              <div>
-                <img src={artist2} alt="artist 2"></img>
-              </div>
-              <div>
-                <img src={artist1} alt="artist 3"></img>
-              </div>
+              {common.map((image, index) => {
+                return (
+                  <div>
+                    <img src={image} alt={`artist ${index + 2}`}></img>
+                  </div>
+                )
+              })}
             </Slider>
           </RightColumn>
         </TwoColumn>
