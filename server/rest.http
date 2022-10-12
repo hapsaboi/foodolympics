@@ -58,6 +58,15 @@ Content-Type: application/json
   "password": "David'922",
 }
 
+###
+POST https://zinger-ticket.herokuapp.com/api/user/add_user/
+Content-Type: application/json
+
+{
+  "email": "hapsahanis.hh@gmail.com",
+  "password": "hanis"
+}
+
 
 ###
 POST https://localhost:5000/api/ticket1/update_ticket/
@@ -70,6 +79,9 @@ Content-Type: application/json
   "status":"success"
 }
 
+
+###
+GET https://localhost:5000/api/ticket/show_stat/
 
 
 ###

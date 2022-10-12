@@ -133,6 +133,25 @@ router.get('/show_tickets', async (req, res) => {
 	}
 });
 
+router.get('/show_stats', async (req, res) => {
+	try {
+		let created = await Ticket.find({ status: "created" }).countDocuments();
+		let success = await Ticket.find({ status: "success" }).countDocuments();
+		let reversed = await Ticket.find({ status: "reversed" }).countDocuments();
+		let used = await Ticket.find({ status: "used" }).countDocuments();
+		let units = await Ticket.aggregate([{
+			$group:
+				{ _id: null, sum: { $sum: "$quantity" } }
+		}]);
+		console.log({ created, success, reversed, units })
+		res.status(200).send({ status: true, data: { created, success, reversed, units, used } });
+
+	} catch (err) {
+		console.log(err)
+		res.status(400).json({ msg: err, status: false });
+	}
+});
+
 
 
 module.exports = router;

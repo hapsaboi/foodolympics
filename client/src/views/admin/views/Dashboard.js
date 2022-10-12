@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { forms, authenticate } from "../data/api";
+import { ticket } from "../../../data/api";
 import axios from "axios";
 // react-bootstrap components
 import {
@@ -15,32 +15,29 @@ import Notifications from "components/Notification/Notification";
 function Dashboard() {
   const [notificationStatus, setNotificationStatus] = useState(false)
   const [notificationDetails, setNotificationDetails] = useState({ msg: "", type: "" });
-  const [form, setForms] = useState([]);
+  const [stats, setStats] = useState({});
 
 
   useEffect(
     () => {
 
-      async function fetchApplications() {
-        await axios.get(authenticate.getNgoData).then((user) => {
+      async function fetchStats() {
+        await axios.get(ticket.showStats).then((res) => {
 
-        });
-        await axios.get(forms.showForms).then((response) => {
-          if (response.data.status === true) {
-            setForms(response.data.data);
+          if (res.data.status === true) {
+            setStats(res.data);
           }
           else {
             setNotificationDetails({ msg: "Error Loading Dashoard, Please Referesh The Page", type: "danger" });
             setNotificationStatus(true);
           }
-        })
+        });
+
       }
-      fetchApplications();
+      fetchStats();
     },
     []);
-  function filterValue(obj, key, value) {
-    return obj.filter(function (v) { return v[key] === value });
-  }
+
 
   return (
     <>
@@ -61,7 +58,7 @@ function Dashboard() {
                   <Col xs="7">
                     <div className="numbers">
                       <p className="card-category">Succesful Tickets</p>
-                      <Card.Title as="h4">Succesful Tickets: {filterValue(form, "form_type", "Sponsor").length}</Card.Title>
+                      <Card.Title as="h4">Succesful Tickets: {stats?.success}</Card.Title>
                     </div>
                   </Col>
                 </Row>
@@ -88,7 +85,7 @@ function Dashboard() {
                   <Col xs="7">
                     <div className="numbers">
                       <p className="card-category">Units Sold</p>
-                      <Card.Title as="h4">Units Sold: {filterValue(form, "form_type", "Partners").length}</Card.Title>
+                      <Card.Title as="h4">Units Sold: {stats?.units?.sum}</Card.Title>
                     </div>
                   </Col>
                 </Row>
@@ -116,8 +113,8 @@ function Dashboard() {
                   </Col>
                   <Col xs="7">
                     <div className="numbers">
-                      <p className="card-category">Created Tickets</p>
-                      <Card.Title as="h4">Created Tickets: {filterValue(form, "form_type", "Volunteer").length}</Card.Title>
+                      <p className="card-category">Reversed Payments</p>
+                      <Card.Title as="h4">Reversed Tickets: {stats?.reversed}</Card.Title>
                     </div>
                   </Col>
                 </Row>
@@ -144,7 +141,7 @@ function Dashboard() {
                   <Col xs="7">
                     <div className="numbers">
                       <p className="card-category">Used Tickets</p>
-                      <Card.Title as="h4">Used Tickets: {filterValue(form, "form_type", "Needy").length}</Card.Title>
+                      <Card.Title as="h4">Used Tickets: {stats?.used}</Card.Title>
                     </div>
                   </Col>
                 </Row>
