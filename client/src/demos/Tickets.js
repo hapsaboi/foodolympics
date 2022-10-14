@@ -68,11 +68,6 @@ const DecoratorBlob2 = styled(SvgDecoratorBlob2)`
 export default () => {
   let tickets = [
     {
-      type: "Test1",
-      price: 100,
-      status: "available"
-    },
-    {
       type: "Early Birds",
       price: 3000,
       status: "available"
@@ -229,6 +224,8 @@ export default () => {
             </Col>
           ))}
         </Row>
+        <div style={{ textAlign: "center" }}> <h4>Note: Tickets at venue will cost ₦:5000</h4></div>
+
 
       </ContentWithPaddingXl>
       <DecoratorBlob1 />
