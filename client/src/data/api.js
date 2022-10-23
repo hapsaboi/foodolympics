@@ -1,4 +1,4 @@
-export const BackEnd = process.env.REACT_APP_BackEndHostLocal;
+export const BackEnd = process.env.REACT_APP_BackEndHost;
 export const business = {
 	name: "African Fashion & Arts",
 	date: "19-20th Sept, 2022",

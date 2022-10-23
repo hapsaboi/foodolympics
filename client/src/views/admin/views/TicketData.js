@@ -54,6 +54,13 @@ function TicketD({ ldata, setShow }) {
                       </Form.Group>
                     </Col>
 
+                    < Col className="pl-1" md="6">
+                      <Form.Group>
+                        <label>Name</label><br />
+                        {ldata?.name}
+                      </Form.Group>
+                    </Col>
+
                   </Row>
                   <Row>
                     <Col className="pr-1" md="6">
@@ -85,13 +92,8 @@ function TicketD({ ldata, setShow }) {
                     </Col>
                   </Row>
                   <Row>
+
                     <Col className="pr-1" md="6">
-                      <Form.Group>
-                        <label>Total</label><br />
-                        ₦{(ldata.total).toLocaleString()}
-                      </Form.Group>
-                    </Col>
-                    <Col className="pl-1" md="6">
                       <Form.Group>
                         <label>Status</label><br />
                         {ldata.status}

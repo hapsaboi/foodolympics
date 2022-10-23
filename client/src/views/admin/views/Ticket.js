@@ -68,7 +68,7 @@ function TableList() {
     });
   }
 
-  const thead = ["Email", "Type", "Quantity", "Ticket Number", "Status", "Action"];
+  const thead = ["Name", "Email", "Type", "Quantity", "Ticket Number", "Status", "Action"];
   return (
     <>
       {notificationStatus ? <Notifications details={notificationDetails} /> : null}
@@ -111,6 +111,7 @@ function TableList() {
                           {tickets.map((f, key) => {
                             return (
                               <tr key={key}>
+                                <td>{f.name} </td>
                                 <td>{f.email} </td>
                                 <td>{f.type} </td>
                                 <td>{f.quantity} </td>
