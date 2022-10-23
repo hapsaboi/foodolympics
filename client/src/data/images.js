@@ -16,6 +16,8 @@ import image14 from '../images/confirmed/14.jpg';
 
 
 import i1 from '../images/common/1.png';
+import i2 from '../images/common/2.png';
+import i3 from '../images/common/3.png';
 
 
 export const confirmed = [
@@ -24,5 +26,5 @@ export const confirmed = [
 ];
 
 export const common = [
-    i1
+    i1, i2, i3
 ];

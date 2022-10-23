@@ -8,7 +8,12 @@ router.post('/create_ticket', async (req, res) => {
 	const { ticket, user, quantity } = req.body;
 	try {
 		delete ticket.status;
-		let data = { ...user, quantity, ...ticket, status: "success" }
+		let data = { ...user, quantity, ...ticket }
+		if (ticket.price == "Free") {
+			data.status = "success"
+		} else {
+			data.status = "created"
+		}
 		if (!data.email || !data.quantity || !data.type) {
 			return res.status(400).json({ msg: "Please ensure email is valid.", status: false });
 		}
@@ -89,7 +94,7 @@ router.get('/show_user_ticket/:id', async (req, res) => {
 	try {
 		let tickets = await Ticket.findOne({ ticket_ref: id });
 		if (!tickets) { return res.status(200).send({ status: false, msg: 'No ticket found' }) };
-		if (tickets.status !== "success") { return res.status(200).send({ status: false, msg: 'Invalid, ticket status is: ' + tickets.status }) }
+		if (tickets.status !== "success" && tickets.status !== "created") { return res.status(200).send({ status: false, msg: 'Invalid, ticket status is: ' + tickets.status }) }
 		return res.status(200).send({ status: true, data: tickets });
 
 	} catch (err) {
@@ -99,7 +104,7 @@ router.get('/show_user_ticket/:id', async (req, res) => {
 });
 router.get('/show_tickets', async (req, res) => {
 	try {
-		let tickets = await Ticket.find();
+		let tickets = await Ticket.find().limit(100);
 		if (!tickets) { res.status(400).send({ status: false, error: 'Problem with the query or no ticket found' }) };
 		res.status(200).send({ status: true, data: tickets });
 
@@ -108,6 +113,15 @@ router.get('/show_tickets', async (req, res) => {
 	}
 });
 
+router.get('/show_value', async (req, res) => {
+	let units = await Ticket.aggregate([
+		{ $match: { status: { $in: ["used", "success"] } } },
+		{
+			$group:
+				{ _id: null, sum: { $sum: "$quantity" } }
+		}]);
+	res.status(200).send({ status: true, data: units });
+});
 router.get('/show_stats', async (req, res) => {
 	try {
 		let created = await Ticket.find({ status: "created" }).countDocuments();
@@ -115,7 +129,7 @@ router.get('/show_stats', async (req, res) => {
 		let reversed = await Ticket.find({ status: "reversed" }).countDocuments();
 		let used = await Ticket.find({ status: "used" }).countDocuments();
 		let units = await Ticket.aggregate([
-			{ $match: { status: "success" } },
+			{ $match: { status: { $in: ["used", "success"] } } },
 			{
 				$group:
 					{ _id: null, sum: { $sum: "$quantity" } }

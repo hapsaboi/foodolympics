@@ -26,8 +26,8 @@ export default () => {
         heading={<>Why <HighlightedText>Choose Us ?</HighlightedText></>}
         statistics={[
           {
-            key: "Date",
-            value: business.date,
+            key: "Date : Time",
+            value: business.date + " : " + business.time,
           },
           {
             key: business.venue,

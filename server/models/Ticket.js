@@ -9,6 +9,9 @@ const TicketSchema = new Schema(
 		quantity: {
 			type: Number, required: true
 		},
+		price: {
+			type: String, required: true
+		},
 		type: { type: String, required: true },
 		date_booked: {
 			type: Date,

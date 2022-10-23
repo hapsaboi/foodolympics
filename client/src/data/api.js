@@ -1,7 +1,7 @@
 export const BackEnd = process.env.REACT_APP_BackEndHost;
 export const business = {
-	name: "African Fashion & Arts",
-	date: "19-20th Sept, 2022",
+	name: "African Fashion & Arts Award",
+	date: "19-20th November, 2022",
 	title: 'African Fashion & Arts Vendors Festival',
 	time: "10:00AM",
 	venue: "Department of Art & Culture, Pavilion Centre Opposite Radio House, Central Area Abuja.",
@@ -48,5 +48,7 @@ export const ticket = {
 	showUserTickets: `${BackEnd}/api/ticket/show_user_ticket`,
 	//---------------------------------------------------------------------------------------------------	
 	showStats: `${BackEnd}/api/ticket/show_stats`,
+	//---------------------------------------------------------------------------------------------------	
+	showValue: `${BackEnd}/api/ticket/show_value`,
 	//---------------------------------------------------------------------------------------------------	
 };

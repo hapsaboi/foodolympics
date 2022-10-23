@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { motion } from "framer-motion";
 import tw from "twin.macro";
@@ -74,6 +74,14 @@ export default () => {
     },
 
   ];
+  let tickets_paid = [
+    {
+      type: "Early Birds",
+      price: "1000",
+      status: "available"
+    },
+
+  ];
   const [modal, setModal] = useState(false);
   const [selected, setSelected] = useState({});
   const [quantity, setQuantity] = useState(1);
@@ -87,6 +95,7 @@ export default () => {
   const [socket, setSocket] = useState(null);
   const [loading, setLoading] = useState(false);
   const [socketData, setSocketData] = useState({});
+  const [value, setValue] = useState(0);
 
   const [requestLoading, setRequestLoading] = useState(false);
 
@@ -115,6 +124,23 @@ export default () => {
   //   }
   // }, [socket])
 
+  useEffect(() => {
+    async function showValue() {
+      setRequestLoading(true);
+
+      await axios.get(ticket.showValue).then((response) => {
+        if (response.data.status === true) {
+          console.log(response.data.data[0].sum);
+          setValue(response.data.data[0].sum);
+        }
+        setRequestLoading(false);
+      }).catch((error) => {
+        setRequestLoading(false);
+      })
+    }
+
+    showValue();
+  }, [])
 
   async function createTicket() {
     setRequestLoading(true);
@@ -147,6 +173,7 @@ export default () => {
 
     })
   }
+
   function isValidEmail(email) {
     let result = /\S+@\S+\.\S+/.test(email);
     if (result) {
@@ -178,43 +205,86 @@ export default () => {
 
         </HeaderRow>
         <Row style={{ display: "flex", justifyContent: "center" }}>
-          <hr />
-          {tickets.map((card, index) => (
-            <Col key={index} md={3}>
-              <Card className="group" href={card.url} initial="rest" whileHover="hover" animate="rest">
-                <CardImageContainer imageSrc={artist3} style={{ width: "100%" }}>
-                  <CardRatingContainer>
-                    <CardRating>
-                      <StarIcon />
-                      {5}
-                    </CardRating>
-                  </CardRatingContainer>
-                  <CardHoverOverlay
-                    variants={{
+          {(value > 5000 || value === 5000) ? <h4>Free tickets are no longer available. create ticket now and pay at the venue </h4> : null}
+          <hr />{(value > 5000 || value === 5000) ?
+            <>
+              {tickets_paid.map((card, index) => (
+                <Col key={index} md={3}>
+                  <Card className="group" href={card.url} initial="rest" whileHover="hover" animate="rest">
+                    <CardImageContainer imageSrc={artist3} style={{ width: "100%" }}>
+                      <CardRatingContainer>
+                        <CardRating>
+                          <StarIcon />
+                          {5}
+                        </CardRating>
+                      </CardRatingContainer>
+                      <CardHoverOverlay
+                        variants={{
 
-                      hover: {
-                        opacity: 1,
-                        height: "auto"
-                      },
-                      rest: {
-                        opacity: 0,
-                        height: 0
-                      }
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <CardButton onClick={() => { toggle(); setSelected(card) }}>Buy Now</CardButton>
-                  </CardHoverOverlay>
-                </CardImageContainer>
-                <CardText>
-                  <CardTitle>{card.type}</CardTitle>
-                  <CardContent>{card.content}</CardContent>
-                  <CardPrice>₦: {card.price.toLocaleString()}</CardPrice>
-                  <CardButton onClick={() => { toggle(); setSelected(card) }}>Buy Now</CardButton>
-                </CardText>
-              </Card>
-            </Col>
-          ))}
+                          hover: {
+                            opacity: 1,
+                            height: "auto"
+                          },
+                          rest: {
+                            opacity: 0,
+                            height: 0
+                          }
+                        }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <CardButton onClick={() => { toggle(); setSelected(card) }}>Buy Now</CardButton>
+                      </CardHoverOverlay>
+                    </CardImageContainer>
+                    <CardText>
+                      <CardTitle>{card.type}</CardTitle>
+                      <CardContent>{card.content}</CardContent>
+                      <CardPrice>₦: {card.price.toLocaleString()}</CardPrice>
+                      <CardButton onClick={() => { toggle(); setSelected(card) }}>Buy Now</CardButton>
+                    </CardText>
+                  </Card>
+                </Col>
+              ))}
+            </>
+            :
+            <>
+              {tickets.map((card, index) => (
+                <Col key={index} md={3}>
+                  <Card className="group" href={card.url} initial="rest" whileHover="hover" animate="rest">
+                    <CardImageContainer imageSrc={artist3} style={{ width: "100%" }}>
+                      <CardRatingContainer>
+                        <CardRating>
+                          <StarIcon />
+                          {5}
+                        </CardRating>
+                      </CardRatingContainer>
+                      <CardHoverOverlay
+                        variants={{
+
+                          hover: {
+                            opacity: 1,
+                            height: "auto"
+                          },
+                          rest: {
+                            opacity: 0,
+                            height: 0
+                          }
+                        }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <CardButton onClick={() => { toggle(); setSelected(card) }}>Buy Now</CardButton>
+                      </CardHoverOverlay>
+                    </CardImageContainer>
+                    <CardText>
+                      <CardTitle>{card.type}</CardTitle>
+                      <CardContent>{card.content}</CardContent>
+                      <CardPrice>₦: {card.price.toLocaleString()}</CardPrice>
+                      <CardButton onClick={() => { toggle(); setSelected(card) }}>Buy Now</CardButton>
+                    </CardText>
+                  </Card>
+                </Col>
+              ))}
+            </>
+          }
         </Row>
         <div style={{ textAlign: "center" }}> <h4>Note: Tickets at venue will cost ₦:1000</h4></div>
 
@@ -240,6 +310,7 @@ export default () => {
                 <h5>Address: {business.venue}</h5>
               </div>
 
+
               <div style={{ textAlign: "center" }}>
                 <Button color="success" style={{ background: "green", color: "white" }} onClick={saveImg}>
                   Save Ticket
@@ -262,7 +333,7 @@ export default () => {
                         <div><h5>Date:{business.date}.</h5></div>
                         <div style={{ marginTop: "-20px" }}><b>{selected.type}</b></div>
 
-                        <QuantityPicker style={{ marginTop: "-100px" }} min={1} max={100} value={1} onChange={(value) => setQuantity(value)} smooth />
+                        <QuantityPicker style={{ marginTop: "-100px" }} min={1} max={10} value={1} onChange={(value) => setQuantity(value)} smooth />
                       </Col>
                     </Row>
                     <Row>
@@ -288,9 +359,11 @@ export default () => {
                           </FormFeedback>
                         </FormGroup>
                       </Col>
+                      {(value > 5000 || value === 5000) ?
 
+                        <h4 style={{ margin: 0 }}>Total: ₦{(selected.price * quantity).toLocaleString()}</h4> : null}
                     </Row>
-                    <h4 style={{ textAlign: "center", padding: "10px" }}><br />
+                    <h4 style={{ textAlign: "center", padding: "5px" }}><br />
                       <Button disabled={!verify.email || requestLoading} color="success" style={{ background: "green", color: "white" }} onClick={createTicket}>
                         Proceed
                       </Button>
