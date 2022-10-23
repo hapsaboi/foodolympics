@@ -3,7 +3,7 @@ export const business = {
 	name: "African Fashion & Arts",
 	date: "19-20th Sept, 2022",
 	title: 'African Fashion & Arts Vendors Festival',
-	time: "6:00PM",
+	time: "10:00AM",
 	venue: "Department of Art & Culture, Pavilion Centre Opposite Radio House, Central Area Abuja.",
 }
 export const authenticate = {
