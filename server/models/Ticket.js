@@ -4,13 +4,8 @@ const Schema = mongoose.Schema;
 const TicketSchema = new Schema(
 	{
 		email: { type: String, required: true },
-		price: {
-			type: Number, required: true
-		},
+
 		quantity: {
-			type: Number, required: true
-		},
-		total: {
 			type: Number, required: true
 		},
 		type: { type: String, required: true },
@@ -18,7 +13,7 @@ const TicketSchema = new Schema(
 			type: Date,
 			default: new Date()
 		},
-		date_booked: {
+		date_used: {
 			type: Date,
 		},
 		ticket_ref: {
@@ -26,9 +21,6 @@ const TicketSchema = new Schema(
 		},
 		payment_detail: {
 			type: {}
-		},
-		socket_id: {
-			type: String, required: true
 		},
 		status: { type: String, default: "created" },
 	}

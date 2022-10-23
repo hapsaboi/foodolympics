@@ -48,7 +48,7 @@ export default () => {
             </SocialLink>
           </SocialLinksContainer>
           <CopyrightText>
-            &copy; Copyright 2022, Online Ticketing System by Zinger Wallet. All Rights Reserved.
+            &copy; Copyright 2022, Online Ticketing System by Zinger. All Rights Reserved.
           </CopyrightText>
         </Row>
       </Content>

@@ -6,6 +6,7 @@ import Tickets from "demos/Tickets.js";
 import FAQ from "demos/SingleCol";
 import People from "demos/People";
 import Footer from "demos/MiniCenteredFooter.js";
+import { business } from "data/api.js";
 // import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import tw from "twin.macro";
 import Partners from "./Partners";
@@ -13,19 +14,11 @@ import Partners from "./Partners";
 
 export default () => {
   const Subheading = tw.span`tracking-wider text-sm font-medium`;
-  const HighlightedText = tw.span`bg-primary-500 text-gray-100 px-4 transform -skew-x-12 inline-block`;
+  const HighlightedText = tw.span`bg-green-500 text-gray-100 px-4 transform -skew-x-12 inline-block`;
   const imageCss = tw`rounded-4xl`;
   return (
     <AnimationRevealPage>
       <Hero />
-      {/*<CountdownCircleTimer
-        isPlaying
-        duration={100}
-        colors={['#004777', '#F7B801', '#A30000', '#A30000']}
-        colorsTime={[7, 5, 2, 0]}
-      >
-        {({ remainingTime }) => { new Date(remainingTime) }}
-      </CountdownCircleTimer> */}
       <Tickets />
       <People />
       <Preview
@@ -34,10 +27,10 @@ export default () => {
         statistics={[
           {
             key: "Date",
-            value: "6th Nov, 2022",
+            value: business.date,
           },
           {
-            key: "PlayZone Area, Anisza Foundation and Gallery, The Exhibition Pavilion, Opposite Radio House Area 11 Garki.",
+            key: business.venue,
             value: "Address"
           }
         ]}

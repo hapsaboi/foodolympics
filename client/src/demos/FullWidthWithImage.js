@@ -5,9 +5,6 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { common } from '../data/images';
-import artist1 from '../images/artist/artist1.png';
-import artist2 from '../images/artist/artist2.png';
-import artist3 from '../images/artist/artist3.png';
 
 import Slider from "react-slick";
 
@@ -42,7 +39,7 @@ const Actions = styled.div`
     ${tw`text-center inline-block w-full sm:w-48 py-4 font-semibold tracking-wide rounded hocus:outline-none focus:shadow-outline transition duration-300`}
   }
   .primaryAction {
-    ${tw`bg-primary-500 text-gray-100 hover:bg-primary-700`}
+    ${tw`bg-green-600 text-gray-100 hover:bg-green-800`}
   }
   .secondaryAction {
     ${tw`mt-4 sm:mt-0 sm:ml-4 bg-gray-300 text-gray-700 hover:bg-gray-400 hover:text-gray-800`}
@@ -63,10 +60,10 @@ export default ({
       Purchase your ticket,
       <wbr />
       <br />
-      <span tw="text-primary-500">anywhere you are.</span>
+      <span tw="text-green-500">anywhere you are.</span>
     </>
   ),
-  description = "Oder your ticket today with our system and enjoy its wonderful service.",
+  description = "Order your ticket today with our system and enjoy its wonderful service.",
   primaryActionUrl = "#tickets1",
   primaryActionText = "Tickets",
   secondaryActionUrl = "#whyus",
@@ -95,9 +92,7 @@ export default ({
 
           <RightColumn>
             <Slider {...settings} arrows={false} autoplay={true}>
-              <div>
-                <img src={artist3} alt="artist 1"></img>
-              </div>
+
               {common.map((image, index) => {
                 return (
                   <div>

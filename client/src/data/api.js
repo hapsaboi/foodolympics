@@ -1,10 +1,10 @@
 export const BackEnd = process.env.REACT_APP_BackEndHost;
 export const business = {
-	name: "PlayZone",
-	date: "6th Nov, 2022",
-	title: 'THE SAPILO SHOW',
+	name: "African Fashion & Arts",
+	date: "19-20th Sept, 2022",
+	title: 'African Fashion & Arts Vendors Festival',
 	time: "6:00PM",
-	venue: "PlayZone Area, Anisza Foundation and Gallery, The Exhibition Pavilion, Opposite Radio House Area 11 Garki.",
+	venue: "Department of Art & Culture, Pavilion Centre Opposite Radio House, Central Area Abuja.",
 }
 export const authenticate = {
 	//takes in token as http cookie

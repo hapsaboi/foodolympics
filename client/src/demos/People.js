@@ -10,7 +10,6 @@ import { ReactComponent as SvgDecoratorBlob1 } from "images/svg-decorator-blob-5
 import { ReactComponent as SvgDecoratorBlob2 } from "images/svg-decorator-blob-7.svg";
 import { Row, Col } from "reactstrap";
 import { confirmed } from '../data/images';
-import artist3 from '../images/artist/artist3.png';
 
 
 const HeaderRow = tw.div`flex justify-between items-center flex-col xl:flex-row`;
@@ -55,7 +54,7 @@ export default () => {
     <Container>
       <ContentWithPaddingXl>
         <HeaderRow>
-          <Header>{"Who to expect"}</Header>
+          <Header>{"What to expect"}</Header>
 
         </HeaderRow>
         <Row style={{ display: "flex", justifyContent: "center" }}>
