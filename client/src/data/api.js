@@ -1,4 +1,4 @@
-export const BackEnd = process.env.REACT_APP_BackEndHost;
+export const BackEnd = process.env.REACT_APP_BackEndHostLocal;
 export const business = {
 	name: "African Fashion & Arts",
 	date: "19-20th Sept, 2022",
@@ -39,7 +39,7 @@ export const authenticate = {
 
 export const ticket = {
 
-	createTicket: `${BackEnd}/api/ticket/create_ticket/`,
+	createTicket: `${BackEnd}/api/ticket/create_ticket`,
 	//---------------------------------------------------------------------------------------------------	
 	updateTicketStatus: `${BackEnd}/api/ticket/update_status`,
 	//---------------------------------------------------------------------------------------------------	
