@@ -1,0 +1,96 @@
+@Token = Bearer sk_live_7hrvb3jzvid42lnyv20vw7eqsucenawr
+
+POST https://zingerad.zingerwallet.com/api/v1/generate-payment-link/
+Content-Type: application/json
+Authorization:  {{Token}}
+
+{
+  "ref_num": "ZIC2EFE2",
+  "amount": 3000
+}
+
+###
+POST https://zinger-food.herokuapp.com/api/ticket/create_ticket
+Content-Type: application/json
+
+{
+    "user":{"email":"hanis@gmail.com"},
+    "quantity":1,
+    "ticket":{"type":"prime","price":100}
+}
+
+###
+POST https://zinger-ticket.herokuapp.com/api/ticket/update_ticket/
+Content-Type: application/json
+
+{
+  "ticket_ref": "ZI16DBF1",
+  "amount": 3000,
+  "reference":"ZI121",
+  "status":"success"
+}
+
+
+
+###
+POST http://localhost:5000/api/ticket/update_ticket/
+Content-Type: application/json
+
+{
+  "ticket_ref": "ZIDEF4D4",
+  "amount": 3000,
+  "reference":"ZI121",
+  "status":"reversed"
+}
+
+
+###
+GET https://zinger-ticket.herokuapp.com/api/user/loggedin
+
+
+
+###
+POST https://zinger-food.herokuapp.com/api/user/add_user/
+Content-Type: application/json
+
+{
+  "email": "hapsahanis.hh@gmail.com",
+  "password": "hanis"
+}
+
+###
+POST https://zinger-ticket.herokuapp.com/api/user/add_user/
+Content-Type: application/json
+
+{
+  "email": "hapsahanis.hh@gmail.com",
+  "password": "hanis"
+}
+
+
+###
+POST https://localhost:5000/api/ticket1/update_ticket/
+Content-Type: application/json
+
+{
+  "ref_num": "ZIC2EFE2",
+  "amount": 3000,
+  "reference":"ZI121",
+  "status":"success"
+}
+
+
+###
+GET https://localhost:5000/api/ticket/show_stat/
+
+
+###
+POST https://zingerad.zingerwallet.com/api/v1/send-ticket-email/
+Content-Type: application/json
+
+{
+  "ref_num": "ZIC2EFE2",
+  "amount":3000,
+  "name":"Hanis Hapsa",
+  "email":"hapsahanis.hh@gmail.com"
+}

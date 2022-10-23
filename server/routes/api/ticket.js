@@ -4,11 +4,11 @@ const Ticket = require('../../models/Ticket');
 // const AES = require("crypto-js/aes");
 const { auth } = require("../../middleware/auth")
 
-router.post('/create_ticket', async (req, res) => {
+router.post('/create_ticket/', async (req, res) => {
 	const { ticket, user, quantity } = req.body;
 	try {
 		delete ticket.status;
-		let data = { ...user, quantity, ...ticket }
+		let data = { ...user, quantity, ...ticket, status: "success" }
 		if (!data.email || !data.quantity || !data.type) {
 			return res.status(400).json({ msg: "Please ensure email is valid.", status: false });
 		}
