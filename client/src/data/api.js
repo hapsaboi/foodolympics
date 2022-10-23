@@ -39,7 +39,7 @@ export const authenticate = {
 
 export const ticket = {
 
-	createTicket: `${BackEnd}/api/ticket/create_ticket`,
+	createTicket: `${BackEnd}/api/ticket/create_ticket/`,
 	//---------------------------------------------------------------------------------------------------	
 	updateTicketStatus: `${BackEnd}/api/ticket/update_status`,
 	//---------------------------------------------------------------------------------------------------	

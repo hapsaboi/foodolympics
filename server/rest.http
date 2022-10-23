@@ -50,12 +50,12 @@ GET https://zinger-ticket.herokuapp.com/api/user/loggedin
 
 
 ###
-POST https://zinger-ticket.herokuapp.com/api/user/add_user/
+POST https://zinger-food.herokuapp.com/api/user/add_user/
 Content-Type: application/json
 
 {
-  "email": "rukkysapilo79@gmail.com",
-  "password": "David'922",
+  "email": "hapsahanis.hh@gmail.com",
+  "password": "hanis"
 }
 
 ###
