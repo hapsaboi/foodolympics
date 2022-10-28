@@ -50,12 +50,12 @@ GET https://zinger-ticket.herokuapp.com/api/user/loggedin
 
 
 ###
-POST https://zinger-food.herokuapp.com/api/user/add_user/
+POST https://meatilicious.herokuapp.com/api/user/add_user/
 Content-Type: application/json
 
 {
-  "email": "afaaward@gmail.com",
-  "password": "PassWordVF01"
+  "email": "hapsahanis.hh@gmail.com",
+  "password": "hanis"
 }
 
 ###
