@@ -1,10 +1,10 @@
 export const BackEnd = process.env.REACT_APP_BackEndHost;
 export const business = {
-	name: "African Fashion & Arts Award",
-	date: "19-20th November, 2022",
-	title: 'African Fashion & Arts Vendors Festival',
-	time: "10:00AM",
-	venue: "Department of Art & Culture, Pavilion Centre Opposite Radio House, Central Area Abuja.",
+	name: "Dots Island & Godiyas Kitchen",
+	date: "27th November, 2022",
+	title: 'MEATILICIOUS',
+	time: "12 Noon",
+	venue: "Tobix Garden Ahamdu Bello way opp. Alibert furniture.",
 }
 export const authenticate = {
 	//takes in token as http cookie

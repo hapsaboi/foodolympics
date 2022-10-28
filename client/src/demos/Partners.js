@@ -8,8 +8,6 @@ import { ReactComponent as SvgDecoratorBlob1 } from "images/svg-decorator-blob-7
 import { ReactComponent as SvgDecoratorBlob2 } from "images/svg-decorator-blob-8.svg";
 
 import image1 from '../images/partners/1.png';
-import image2 from '../images/partners/2.png';
-import image3 from '../images/partners/3.png';
 // import image4 from '../images/partners/4.png';
 // import image5 from '../images/partners/5.png';
 // import image6 from '../images/partners/6.png';
@@ -40,12 +38,6 @@ export default ({
         },
         {
             imageSrc: image1,
-        },
-        {
-            imageSrc: image2,
-        },
-        {
-            imageSrc: image3,
         },
         // {
         //     imageSrc: image4,

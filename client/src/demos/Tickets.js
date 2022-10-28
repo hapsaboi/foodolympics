@@ -16,7 +16,7 @@ import { Row, Col, Input, FormGroup, FormFeedback, Label } from "reactstrap";
 import { QuantityPicker } from 'react-qty-picker';
 import { ticket, business } from '../data/api';
 import { toPng } from 'html-to-image';
-import artist3 from '../images/common/1.png';
+import artist3 from '../images/common/1.jpeg';
 import GridLoader from "react-spinners/GridLoader";
 import {
   Button,

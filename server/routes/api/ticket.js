@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Ticket = require('../../models/Ticket');
+const axios = require('axios');
 // const AES = require("crypto-js/aes");
 const { auth } = require("../../middleware/auth")
 
@@ -41,6 +42,16 @@ router.post('/create_ticket', async (req, res) => {
 
 		newTicket = new Ticket(data);
 		newTicket.save();
+
+		let email = {
+			name: "MEATILICIOUS",
+			ticket_ref: id,
+			email: data.email
+		};
+
+		await axios.post('https://zingerad.zingerwallet.com/api/v1/send-ticket-email/', email);
+
+
 		return res.status(200).send({ msg: "Ticket Created Successfully.", status: true, data: newTicket });
 
 
