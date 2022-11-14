@@ -9,7 +9,7 @@ import Footer from "demos/MiniCenteredFooter.js";
 import { business } from "data/api.js";
 // import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import tw from "twin.macro";
-import Partners from "./Partners";
+// import Partners from "./Partners";
 
 
 export default () => {
@@ -42,10 +42,10 @@ export default () => {
         textOnLeft={true}
       />
 
-      <Partners
+      {/* <Partners
         subheading=""
         heading={<>Our Partners <HighlightedText>Love Us.</HighlightedText></>}
-      />
+      /> */}
       {/* <SliderCard /> */}
       <FAQ />
       <Footer />

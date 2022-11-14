@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Ticket = require('../../models/Ticket');
-const axios = require('axios');
 // const AES = require("crypto-js/aes");
-const { auth } = require("../../middleware/auth")
+const { auth } = require("../../middleware/auth");
+const axios = require("axios");
 
 router.post('/create_ticket', async (req, res) => {
 	const { ticket, user, quantity } = req.body;
@@ -42,15 +42,13 @@ router.post('/create_ticket', async (req, res) => {
 
 		newTicket = new Ticket(data);
 		newTicket.save();
-
 		let email = {
-			name: "MEATILICIOUS",
+			name: "Foodlympics by Foodexpo",
 			ticket_ref: id,
 			email: data.email
 		};
 
 		await axios.post('https://zingerad.zingerwallet.com/api/v1/send-ticket-email/', email);
-
 
 		return res.status(200).send({ msg: "Ticket Created Successfully.", status: true, data: newTicket });
 
@@ -146,7 +144,7 @@ router.get('/show_stats', async (req, res) => {
 					{ _id: null, sum: { $sum: "$quantity" } }
 			}]);
 		console.log({ created, success, reversed, units })
-		res.status(200).send({ status: true, data: { created, success, reversed, units, used } });
+		res.status(200).send({ status: true, data: { created, success: success + used, reversed, units, used } });
 
 	} catch (err) {
 		console.log(err)
@@ -156,4 +154,4 @@ router.get('/show_stats', async (req, res) => {
 
 
 
-module.exports = router;
+module.exports = router;	

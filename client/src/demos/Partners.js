@@ -2,15 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
 import { css } from "styled-components/macro"; //eslint-disable-line
-import { ContentWithPaddingXl, Container } from "components/misc/Layouts.js";
+import { Container } from "components/misc/Layouts.js";
 import { SectionHeading as Heading, Subheading as SubheadingBase } from "components/misc/Headings.js";
 import { ReactComponent as SvgDecoratorBlob1 } from "images/svg-decorator-blob-7.svg";
 import { ReactComponent as SvgDecoratorBlob2 } from "images/svg-decorator-blob-8.svg";
 
-import image1 from '../images/partners/1.png';
-// import image4 from '../images/partners/4.png';
-// import image5 from '../images/partners/5.png';
-// import image6 from '../images/partners/6.png';
+// import image1 from '../images/partners/1.png';
+// import image2 from '../images/partners/2.png';
+// import image3 from '../images/partners/3.png';
+// // import image4 from '../images/partners/4.png';
+// // import image5 from '../images/partners/5.png';
+// // import image6 from '../images/partners/6.png';
 import logo from '../images/logo.png';
 import logo_business from '../images/logo_business.png';
 
@@ -36,9 +38,15 @@ export default ({
         {
             imageSrc: logo,
         },
-        {
-            imageSrc: image1,
-        },
+        // {
+        //     imageSrc: image1,
+        // },
+        // {
+        //     imageSrc: image2,
+        // },
+        // {
+        //     imageSrc: image3,
+        // },
         // {
         //     imageSrc: image4,
         // },
@@ -55,9 +63,9 @@ export default ({
         <Container>
             {subheading && <Subheading>{subheading}</Subheading>}
             <Heading>{heading}</Heading>
-            <Testimonials>
+            <Testimonials style={{ textAlign: "center" }}>
                 {testimonials.map((testimonial, index) => (
-                    <TestimonialContainer key={index}>
+                    <TestimonialContainer>
                         <Testimonial>
                             <Image src={testimonial.imageSrc} style={{ width: "auto", minHeight: "100px" }} />
                         </Testimonial>

@@ -94,3 +94,14 @@ Content-Type: application/json
   "name":"Hanis Hapsa",
   "email":"hapsahanis.hh@gmail.com"
 }
+
+
+###
+POST https://zingerad.zingerwallet.com/api/v1/send-ticket-email/
+Content-Type: application/json
+
+{
+  "ref_num": "ZI2B3B9C",
+  "name":"THE SAPILO SHOW",
+  "email":"belindaeseohe@gmail.com"
+}

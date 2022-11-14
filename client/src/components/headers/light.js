@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
-import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
 import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js";
@@ -59,7 +58,7 @@ export const DesktopNavLinks = tw.nav`
   hidden lg:flex flex-1 justify-between items-center
 `;
 
-export default ({ roundedHeaderButton = false, logoLink, links, className, collapseBreakpointClass = "lg" }) => {
+export default ({ logoLink, links, className, collapseBreakpointClass = "lg" }) => {
   /*
    * This header component accepts an optionals "links" prop that specifies the links to render in the navbar.
    * This links props should be an array of "NavLinks" components which is exported from this file.
@@ -74,7 +73,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
    * If you manipulate links here, all the styling on the links is already done for you. If you pass links yourself though, you are responsible for styling the links or use the helper styled components that are defined here (NavLink)
    */
 
-  const { userDetail, getLoggedIn, loggedIn } = useAuth();
+  const { getLoggedIn, loggedIn } = useAuth();
   useEffect(
     () => {
       async function changeDetail() {
@@ -86,15 +85,6 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
     [loggedIn]);
 
 
-  async function logout() {
-    try {
-      window.localStorage.removeItem("token");
-      await getLoggedIn();
-    } catch (e) {
-      alert(e);
-    }
-
-  };
 
   const defaultLinks = [
     <NavLinks key={1}>
@@ -109,7 +99,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
   const defaultLogoLink = (
     <LogoLink href="/">
       <img style={{ width: "30px" }} src={logo} alt="logo" />
-      <img style={{ width: "40px", marginLeft: "-10px" }} src={logo_business} alt="logo_business" />
+      <img style={{ width: "50px", marginLeft: "-10px" }} src={logo_business} alt="logo_business" />
       Tickets System
     </LogoLink>
   );

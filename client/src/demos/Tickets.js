@@ -16,7 +16,7 @@ import { Row, Col, Input, FormGroup, FormFeedback, Label } from "reactstrap";
 import { QuantityPicker } from 'react-qty-picker';
 import { ticket, business } from '../data/api';
 import { toPng } from 'html-to-image';
-import artist3 from '../images/common/1.jpeg';
+import artist3 from '../images/common/1.png';
 import GridLoader from "react-spinners/GridLoader";
 import {
   Button,
@@ -77,7 +77,7 @@ export default () => {
   let tickets_paid = [
     {
       type: "Early Birds",
-      price: "1000",
+      price: "1500",
       status: "available"
     },
 
@@ -92,7 +92,6 @@ export default () => {
   const toggle = () => setModal(!modal);
   const [notificationStatus, setNotificationStatus] = useState(false)
   const [notificationDetails, setNotificationDetails] = useState({ msg: "", type: "" });
-  const [socket, setSocket] = useState(null);
   const [loading, setLoading] = useState(false);
   const [socketData, setSocketData] = useState({});
   const [value, setValue] = useState(0);
@@ -205,8 +204,8 @@ export default () => {
 
         </HeaderRow>
         <Row style={{ display: "flex", justifyContent: "center" }}>
-          {(value > 5000 || value === 5000) ? <h4>Free tickets are no longer available. create ticket now and pay at the venue </h4> : null}
-          <hr />{(value > 5000 || value === 5000) ?
+          {(value > 1000 || value === 1000) ? <h4>Free tickets are no longer available. create ticket now and pay at the venue </h4> : null}
+          <hr />{(value > 1000 || value === 1000) ?
             <>
               {tickets_paid.map((card, index) => (
                 <Col key={index} md={3}>
@@ -277,7 +276,7 @@ export default () => {
                     <CardText>
                       <CardTitle>{card.type}</CardTitle>
                       <CardContent>{card.content}</CardContent>
-                      <CardPrice>₦: {card.price.toLocaleString()}</CardPrice>
+                      <CardPrice>₦: {card.price.toLocaleString()}  for Zinger users</CardPrice>
                       <CardButton onClick={() => { toggle(); setSelected(card) }}>Buy Now</CardButton>
                     </CardText>
                   </Card>
@@ -286,7 +285,7 @@ export default () => {
             </>
           }
         </Row>
-        <div style={{ textAlign: "center" }}> <h4>Note: Tickets at venue will cost ₦:1000</h4></div>
+        <div style={{ textAlign: "center" }}> <h4> NB: Free ticket holders will be required to provide their Zinger usernames at the event. <br /> To download and register on Zinger, <a href="https://linktr.ee/get_zinger" target="_blank" style={{ background: "#48BB78", color: "white", borderRadius: "15px", padding: "4px" }}>click here...</a><br /> Note: Tickets at venue will cost ₦:1500</h4></div>
 
 
       </ContentWithPaddingXl>
@@ -359,7 +358,7 @@ export default () => {
                           </FormFeedback>
                         </FormGroup>
                       </Col>
-                      {(value > 5000 || value === 5000) ?
+                      {(value > 1000 || value === 1000) ?
 
                         <h4 style={{ margin: 0 }}>Total: ₦{(selected.price * quantity).toLocaleString()}</h4> : null}
                     </Row>

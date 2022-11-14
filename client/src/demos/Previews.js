@@ -6,7 +6,7 @@ import { SectionHeading, Subheading as SubheadingBase } from "components/misc/He
 import StatsIllustrationSrc from "images/stats-illustration.svg";
 import { ReactComponent as SvgDotPattern } from "images/dot-pattern.svg";
 
-import event3 from '../images/confirmed/1.jpeg';
+import event3 from '../images/confirmed/3.jpg';
 
 const Container = tw.div`relative`;
 const TwoColumn = tw.div`flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24`;
@@ -49,7 +49,7 @@ export default ({
       We have been doing this <wbr /> since <span tw="text-primary-500">1999.</span>
     </>
   ),
-  description = "Meatilicious. We are ready to give you the greatest experience.",
+  description = "Foodlympics by Foodexpo, We are ready to give you the greatest experience.",
   imageSrc = StatsIllustrationSrc,
   imageCss = null,
   imageContainerCss = null,

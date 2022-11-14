@@ -1,10 +1,10 @@
 export const BackEnd = process.env.REACT_APP_BackEndHost;
 export const business = {
-	name: "Dots Island & Godiyas Kitchen",
-	date: "27th November, 2022",
-	title: 'MEATILICIOUS',
-	time: "12 Noon",
-	venue: "Tobix Garden Ahamdu Bello way opp. Alibert furniture.",
+	name: "Food Expo",
+	date: "20th November, 2022",
+	title: 'Foodlympics',
+	time: "12:00PM",
+	venue: "El Amin International School Maitama Abuja.",
 }
 export const authenticate = {
 	//takes in token as http cookie
