@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
 	cors({
-		origin: ["http://localhost:3000", "https://foodexpo.zingerwallet.com", "172.105.91.10"],
+		origin: ["http://localhost:3000", "https://foodexpo.zingerwallet.com"],
 		credentials: true
 	})
 );
