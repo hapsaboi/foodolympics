@@ -30,6 +30,7 @@ import Notifications from "components/Notification/Notification";
 import { io } from 'socket.io-client';
 import { BackEnd } from "../data/api.js";
 
+
 const HeaderRow = tw.div`flex justify-between items-center flex-col xl:flex-row`;
 const Header = tw(SectionHeading)``;
 const Card = tw(motion.a)`bg-gray-200 rounded-b block max-w-xs mx-auto sm:max-w-none sm:mx-0`;
@@ -77,7 +78,7 @@ export default () => {
   let tickets_paid = [
     {
       type: "Early Birds",
-      price: "1500",
+      price: "1000",
       status: "available"
     },
 
@@ -95,6 +96,7 @@ export default () => {
   const [loading, setLoading] = useState(false);
   const [socketData, setSocketData] = useState({});
   const [value, setValue] = useState(0);
+  const [socket, setSocket] = useState(null);
 
   const [requestLoading, setRequestLoading] = useState(false);
 
@@ -106,22 +108,24 @@ export default () => {
     setVerify({ email: false });
     setLoading(false);
   }
-  // useEffect(() => {
-  //   if (socket === null) {
-  //     setSocket(io(BackEnd));
-  //   }
-  //   if (socket) {
-  //     socket.on('connection', () => {
-  //       let socketID = socket.id
-  //     })
 
+  useEffect(() => {
+    if (socket === null) {
+      setSocket(io(BackEnd));
+    }
+    if (socket) {
+      socket.on('connection', () => {
+        let socketID = socket.id
+      })
 
-  //     socket.on('msg', (data) => {
-  //       setPaymentStatus(data.status);
-  //       setSocketData(data);
-  //     })
-  //   }
-  // }, [socket])
+      socket.on('msg', (data) => {
+        console.log(data);
+        setPaymentStatus(data.status);
+        setSocketData(data);
+      })
+    }
+  }, [socket])
+
 
   useEffect(() => {
     async function showValue() {
@@ -146,13 +150,16 @@ export default () => {
     // let data = await encrypt({ ticket: ticket, quantity, user });
     let data = { ticket: selected, quantity, user };
 
-    await axios.post(ticket.createTicket, data).then((response) => {
+    await axios.post(ticket.createTicket + "/" + socket.id, data).then((response) => {
       if (response.data.status === true) {
         setTicket(response.data.data);
-        setNotificationDetails({ msg: "Ticket created.", type: "success" });
+        if (selected.price === "Free") {
+          setSocketData(response.data.data);
+          setPaymentStatus("success");
+        }
+        let x = selected.price === "Free" ? "." : ", please proceed to payment.";
+        setNotificationDetails({ msg: "Ticket(s) created" + x, type: "success" });
         setNotificationStatus(true);
-        setSocketData(response.data.data);
-        setPaymentStatus("success");
       }
       else {
         setNotificationDetails({ msg: "Error adding ticket, please try again.", type: "danger" });
@@ -204,8 +211,8 @@ export default () => {
 
         </HeaderRow>
         <Row style={{ display: "flex", justifyContent: "center" }}>
-          {(value > 1000 || value === 1000) ? <h4>Free tickets are no longer available. create ticket now and pay at the venue </h4> : null}
-          <hr />{(value > 1000 || value === 1000) ?
+          {(value > 1100 || value === 1100) ? <h4>Free tickets are no longer available. Reserve ticket now and pay at the venue </h4> : null}
+          <hr />{(value > 1100 || value === 1100) ?
             <>
               {tickets_paid.map((card, index) => (
                 <Col key={index} md={3}>
@@ -305,7 +312,7 @@ export default () => {
                 <>{business.title}</>
                 <h4 style={{ marginTop: "-3px" }}>Date: {business.date}</h4>
                 <h4 style={{ marginTop: "-15px" }}>Time: {business.time}</h4>
-                <h4 style={{ marginTop: "-15px" }}>Ticket No: <b>{ticketData?.ticket_ref}</b></h4>
+                <h4 style={{ marginTop: "-15px" }}>Ticket No: <b>{ticketData?.ticket?.ticket_ref}</b></h4>
                 <h5>Address: {business.venue}</h5>
               </div>
 
@@ -358,7 +365,7 @@ export default () => {
                           </FormFeedback>
                         </FormGroup>
                       </Col>
-                      {(value > 1000 || value === 1000) ?
+                      {(value > 1100 || value === 1100) ?
 
                         <h4 style={{ margin: 0 }}>Total: ₦{(selected.price * quantity).toLocaleString()}</h4> : null}
                     </Row>
@@ -369,7 +376,28 @@ export default () => {
                     </h4>
                   </>
                   :
-                  null
+                  <>
+
+                    <div style={{ textAlign: "center" }}>
+                      <img alt="zinger logo" style={{ width: "70%", marginLeft: "auto", marginRight: "auto", display: "block" }} src={zinger_logo} />{
+                        loading ?
+                          <>
+                            <GridLoader color={"black"} loading={true} size={40} />
+                            Verifying your payment.
+                          </>
+                          :
+                          <>
+                            <h4>Payment Bank: {ticketData?.payment_details?.bank_name}</h4>
+                            <h4 style={{ marginTop: "-10px" }}>Account Name: {ticketData?.payment_details?.account_name}</h4>
+                            <h4 style={{ marginTop: "-10px" }}>Account No: {ticketData?.payment_details?.account_no}</h4>
+                            <h4 style={{ marginTop: "-10px" }}>Amount: ₦{(ticketData?.payment_details?.amount).toLocaleString()}</h4>
+                            Note: Any payment less than the specified amount, wll lead to an instant reversal minus the charges
+
+                            <Button style={{ background: "green", color: "white" }} onClick={() => { setLoading(true) }}>I have made the payment</Button>
+                          </>
+                      }
+                    </div>
+                  </>
               }
             </>
             : null

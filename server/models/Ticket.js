@@ -26,6 +26,9 @@ const TicketSchema = new Schema(
 		payment_detail: {
 			type: {}
 		},
+		socket_id: {
+			type: String, required: true
+		},
 		status: { type: String, default: "created" },
 	}
 );

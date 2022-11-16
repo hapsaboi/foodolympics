@@ -69,14 +69,14 @@ Content-Type: application/json
 
 
 ###
-POST https://localhost:5000/api/ticket1/update_ticket/
+POST https://localhost:5000/api/ticket1/update_ticket
 Content-Type: application/json
 
 {
-  "ref_num": "ZIC2EFE2",
+  "ref_num": "ZIA1C1CA",
   "amount": 3000,
   "reference":"ZI121",
-  "status":"success"
+  "status":"reversed"
 }
 
 

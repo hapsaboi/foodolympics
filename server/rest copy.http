@@ -37,10 +37,10 @@ POST http://localhost:5000/api/ticket/update_ticket/
 Content-Type: application/json
 
 {
-  "ticket_ref": "ZIDEF4D4",
-  "amount": 3000,
+  "ticket_ref": "ZI0D1D3B",
+  "amount": 200,
   "reference":"ZI121",
-  "status":"reversed"
+  "status":"success"
 }
 
 
