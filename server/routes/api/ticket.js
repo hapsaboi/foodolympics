@@ -82,9 +82,9 @@ router.post('/create_ticket/:socket_id', async (req, res) => {
 			} else {
 				result = false;
 			}
-			console.log(result, count);
 			while (!result && count < 3) {
-				console.log("why", res_data.account_number);
+				data.ticket_ref = data.ticket_ref + count;
+				data_sent.ref_num = data_sent.ref_num + count;
 				res_data = await getAccount(headers, data_sent);
 				if (res_data.account_number) {
 					if (res_data.account_number == 10) {
