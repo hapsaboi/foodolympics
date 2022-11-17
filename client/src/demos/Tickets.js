@@ -283,7 +283,7 @@ export default () => {
                     <CardText>
                       <CardTitle>{card.type}</CardTitle>
                       <CardContent>{card.content}</CardContent>
-                      <CardPrice>₦: {card.price.toLocaleString()}  for Zinger users</CardPrice>
+                      <CardPrice>₦: {card.price}  for Zinger users</CardPrice>
                       <CardButton onClick={() => { toggle(); setSelected(card) }}>Buy Now</CardButton>
                     </CardText>
                   </Card>
@@ -312,7 +312,7 @@ export default () => {
                 <>{business.title}</>
                 <h4 style={{ marginTop: "-3px" }}>Date: {business.date}</h4>
                 <h4 style={{ marginTop: "-15px" }}>Time: {business.time}</h4>
-                <h4 style={{ marginTop: "-15px" }}>Ticket No: <b>{ticketData?.ticket?.ticket_ref}</b></h4>
+                <h4 style={{ marginTop: "-15px" }}>Ticket No: <b>{ticketData?.ticket?.ticket_ref || ticketData?.ticket_ref}</b></h4>
                 <h5>Address: {business.venue}</h5>
               </div>
 
@@ -390,7 +390,7 @@ export default () => {
                             <h4>Payment Bank: {ticketData?.payment_details?.bank_name}</h4>
                             <h4 style={{ marginTop: "-10px" }}>Account Name: {ticketData?.payment_details?.account_name}</h4>
                             <h4 style={{ marginTop: "-10px" }}>Account No: {ticketData?.payment_details?.account_no}</h4>
-                            <h4 style={{ marginTop: "-10px" }}>Amount: ₦{(ticketData?.payment_details?.amount).toLocaleString()}</h4>
+                            <h4 style={{ marginTop: "-10px" }}>Amount: ₦{(ticketData?.payment_details?.amount)}</h4>
                             Note: Any payment less than the specified amount, wll lead to an instant reversal minus the charges
 
                             <Button style={{ background: "green", color: "white" }} onClick={() => { setLoading(true) }}>I have made the payment</Button>

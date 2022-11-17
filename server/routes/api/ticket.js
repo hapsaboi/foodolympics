@@ -25,7 +25,11 @@ router.post('/create_ticket/:socket_id', async (req, res) => {
 	let { socket_id } = req.params;
 	const { ticket, user, quantity } = req.body;
 	delete ticket.status;
+
 	let data = { ...user, quantity, ...ticket, socket_id }
+	if (ticket.price == "Free") {
+		data.status === "success";
+	}
 	if (!data.email || !data.quantity || !data.price || !data.type) {
 		return res.status(400).json({ msg: "Please ensure email is valid.", status: false });
 	}
