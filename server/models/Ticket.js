@@ -6,7 +6,7 @@ const TicketSchema = new Schema(
 		email: { type: String, required: true },
 		name: { type: String },
 
-		quantity: {	
+		quantity: {
 			type: Number, required: true
 		},
 		price: {
@@ -27,7 +27,7 @@ const TicketSchema = new Schema(
 			type: {}
 		},
 		socket_id: {
-			type: String, required: true
+			type: String
 		},
 		status: { type: String, default: "created" },
 	}
