@@ -203,7 +203,7 @@ router.patch('/update_status/:ticket_ref', [auth], async (req, res) => {
 
 			return res
 				.status(200)
-				.send({ status: true, msg: "Ticket updated successfully" });
+				.send({ status: true, msg: "Ticket updated successfully." });
 
 		} catch (err) {
 			console.log(err);

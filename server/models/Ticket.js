@@ -6,7 +6,7 @@ const TicketSchema = new Schema(
 		email: { type: String, required: true },
 		name: { type: String },
 
-		quantity: {
+		quantity: {	
 			type: Number, required: true
 		},
 		price: {

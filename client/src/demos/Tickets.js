@@ -211,7 +211,7 @@ export default () => {
 
         </HeaderRow>
         <Row style={{ display: "flex", justifyContent: "center" }}>
-          {(value > 1100 || value === 1100) ? <h4>Free tickets are no longer available. Reserve ticket now and pay at the venue </h4> : null}
+          {(value > 1100 || value === 1100) ? <h4>Free tickets are no longer available. </h4> : null}
           <hr />{(value > 1100 || value === 1100) ?
             <>
               {tickets_paid.map((card, index) => (

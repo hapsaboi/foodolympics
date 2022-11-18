@@ -20,12 +20,12 @@ Content-Type: application/json
 }
 
 ###
-POST https://zinger-ticket.herokuapp.com/api/ticket/update_ticket/
+POST https://foodolympics.herokuapp.com/api/ticket/update_ticket/
 Content-Type: application/json
 
 {
-  "ticket_ref": "ZI16DBF1",
-  "amount": 3000,
+  "ticket_ref": "ZICA716B",
+  "amount": 1100,
   "reference":"ZI121",
   "status":"success"
 }
@@ -93,4 +93,13 @@ Content-Type: application/json
   "amount":3000,
   "name":"Hanis Hapsa",
   "email":"hapsahanis.hh@gmail.com"
+}
+
+
+POST https:/zinger-food.herokuapp.com/api/user/add_user/
+Content-Type: application/json
+
+{
+  "email": "staff@gmail.com",
+  "password": "staff"
 }
