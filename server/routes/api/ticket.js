@@ -22,6 +22,7 @@ async function getAccount(headers, data_sent) {
 }
 
 router.post('/create_ticket/:socket_id', async (req, res) => {
+	return res.status(400).send({ msg: "Cannot purchase tickets today.", status: false });
 	let { socket_id } = req.params;
 	const { ticket, user, quantity } = req.body;
 	delete ticket.status;
